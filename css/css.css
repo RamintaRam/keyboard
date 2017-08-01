@@ -1,0 +1,32 @@
+#register{
+    background-color: teal ;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+}
+
+#registration{
+    text-align: center;
+    /*vertical-align: middle;*/
+    margin: 10%;
+    padding: 50px 100px 50px 100px;
+    /*background-color: aquamarine;*/
+
+}
+
+#username{
+    text-align: left;
+
+
+}
+
+body{
+background-color: paleturquoise;
+}
