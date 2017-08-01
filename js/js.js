@@ -150,7 +150,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         // var button = $('#register');
         var timeOut;
         var letterKey;
-        var letterPlacement = $('');
+        var letterPlacement = $('h3');
 
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
@@ -165,7 +165,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         function enable() {
             timeOut = setTimeout(changeLetter, level * 1000);
-        }
+        };
 
 
           function changeLetter(){
