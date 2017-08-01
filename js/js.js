@@ -147,9 +147,13 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var view = $('#game');
         // var input = $('#username');
         // var button = $('#register');
+        var timeOut;
+        var letterKey;
+        var letterPlacement = $('');
+        var letters = 'a b c d e f g h i j k l m n o p q r s t u v w x y z';
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
-            view.removeClass('hidden');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
+            view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level +'<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
             enable();
         };
 
@@ -159,27 +163,19 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
 
         function enable() {
+timeOut = setTimeout(changeLetter, level * 1000)
 
-            input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
-                if(input.val().length >= 3)
-                    button.attr('disabled', false);
-                else{
-                    button.attr('disabled', true);
-                }
-            });
-
-            button.click(function () {
-                name = input.val();
-                changeState(CONST_STATE_GAME);
-
-            })
+          function changeLetter(){
+    letterKey = Math.round(Math.random() * (letters.length -1));
+              letterPlacement.html(letters[letterKey]);
+          }
         }
 
-        function disable() {
-            input.unbind();
-            button.unbind();
-            input.val('');
-        }
+        // function disable() {
+        //     input.unbind();
+        //     button.unbind();
+        //     input.val('');
+        // }
 
     };
 
