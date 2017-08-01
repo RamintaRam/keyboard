@@ -145,31 +145,35 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
     var GameLogics = function () {
         var view = $('#game');
+        var letters = 'abcdefghijklmnopqrstuvwxyz';
         // var input = $('#username');
         // var button = $('#register');
         var timeOut;
         var letterKey;
         var letterPlacement = $('');
-        var letters = 'a b c d e f g h i j k l m n o p q r s t u v w x y z';
+
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
             view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level +'<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
-            enable();
+            changeLetter();
         };
 
         this.hide = function () {
-            view.addClass('hidden');
-            disable();
+                view.addClass('hidden');
+            // disable();
         };
 
         function enable() {
-timeOut = setTimeout(changeLetter, level * 1000)
+            timeOut = setTimeout(changeLetter, level * 1000);
+        }
+
 
           function changeLetter(){
     letterKey = Math.round(Math.random() * (letters.length -1));
               letterPlacement.html(letters[letterKey]);
-          }
-        }
+              enable();
+          };
+
 
         // function disable() {
         //     input.unbind();
