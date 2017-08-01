@@ -16,8 +16,16 @@
     text-align: center;
     /*vertical-align: middle;*/
     margin: 10%;
-    padding: 50px 100px 50px 100px;
+    padding: 100px 100px 100px 100px;
+    border: double;
+    border-color: teal;
+
     /*background-color: aquamarine;*/
+    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8slLWYemGzetGvSyuqXksE8voZIvrx6KFotxSMIpHEQ5jOPq6yA");*/
+    /*background-repeat: no-repeat ;*/
+    /*background-position: center;*/
+    /*-moz-background-size: auto;*/
+
 
 }
 
@@ -34,3 +42,26 @@ background-color: paleturquoise;
 .hidden{
     display: none;
 }
+
+#level{
+    text-align: center;
+    padding: 100px 100px 100px 100px;
+    margin: 10%;
+    border: double;
+    border-color: teal;
+}
+
+#start{
+    background-color: teal ;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+}
+
