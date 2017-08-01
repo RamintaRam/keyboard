@@ -25,11 +25,11 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
                 break;
 
             case  CONST_STATE_LEVEL_SELECTION:
-                last_state = level;
+                last_state = select_level;
                 break;
 
             case CONST_STATE_GAME:
-
+                last_state = start_game;
                 break;
 
             case CONST_STATE_GAME_OVER:
@@ -143,10 +143,10 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 //////////////////////////////////////////////////////
     /*Select GAME stage*/
 
-    var RegisterLogics = function () {
-        var view = $('#registration');
-        var input = $('#username');
-        var button = $('#register');
+    var GameLogics = function () {
+        var view = $('#game');
+        // var input = $('#username');
+        // var button = $('#register');
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
             view.removeClass('hidden');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
@@ -170,7 +170,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
             button.click(function () {
                 name = input.val();
-                changeState(CONST_STATE_LEVEL_SELECTION);
+                changeState(CONST_STATE_GAME);
 
             })
         }
@@ -188,7 +188,8 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
     /**/
     var register = new RegisterLogics(),
-        level = new SelectLevelLogics();
+        select_level = new SelectLevelLogics(),
+        start_game = new GameLogics();
 
     changeState(CONST_STATE_REGISTER); // pirmas dalykas, ka turi matyti vartotojas. kad nekrautu visko iskart.
 
