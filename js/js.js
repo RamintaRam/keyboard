@@ -152,6 +152,10 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var lifesCount;
         var score;
         var userInput = true;
+        var isGolden;
+        var letterAppearanceTime;
+        var clickOnLetterTime;
+        var reactionTime = $('#time');
 
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
@@ -168,19 +172,34 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
 
         function enable() {
+
             $(window).keyup(function (e) {
+
                 if (e.key === letters[letterKey])
                     updateScore();
                 else {
                     removeLife();
                 }
+                clickOnLetterTime = Date.now();
+                countTime();
+
                 userInput = true;
                 changeLetter();
+
             });
         };
 
+        reactionTime = clickOnLetterTime-letterAppearanceTime;
 
         function changeLetter() {
+            if(Math.random()<0.1) {
+                letterPlacement.addClass('gold');
+                isGolden = true;
+            }
+            else{
+                letterPlacement.removeClass('gold');
+                isGolden=false;
+            }
             if (!userInput)
                 removeLife();
 
@@ -192,12 +211,37 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             userInput = false;
             letterKey = Math.round(Math.random() * (letters.length - 1));
             letterPlacement.html(letters[letterKey]);
+            letterAppearanceTime = Date.now();
             timeOut = setTimeout(changeLetter, level * 1000);
         };
 
         function updateScore() {
-            score += 10;
+
+            if(score%20===0 && score!==0)   // lyginama ar liekana 0. proc. zenklas tikrina liekana.
+            {
+                lifesCount+=1;
+                $('#life').html(lifesCount);
+            }
+
+            if(isGolden) {
+                isGolden = false;
+                for (i = 0; i < 5; i++)
+                    updateScore();
+            }
+            else {
+                score += 1;
+            }
+
+            // console.log(score);
             $('#score').html(score);
+
+        }
+
+        function countTime(){
+            reactionTime=(clickOnLetterTime-letterAppearanceTime)*0.001;
+            console.log(reactionTime);
+            $('#time').html(reactionTime);
+
 
         }
 
