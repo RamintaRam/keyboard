@@ -59,10 +59,10 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         function enable() {
 
-            input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
-                if(input.val().length >= 3)
+            input.keyup(function (e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
+                if (input.val().length >= 3)
                     button.attr('disabled', false);
-                else{
+                else {
                     button.attr('disabled', true);
                 }
             });
@@ -95,7 +95,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
             view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Choose level:' + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
-             // enable();
+            // enable();
         };
 
         this.hide = function () {
@@ -104,33 +104,33 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
         /*
 
-        function enable() {
+         function enable() {
 
-            input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
-                if(input.val().length >= 3)
-                    button.attr('disabled', false);
-                else{
-                    button.attr('disabled', true);
-                }
-            });
+         input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
+         if(input.val().length >= 3)
+         button.attr('disabled', false);
+         else{
+         button.attr('disabled', true);
+         }
+         });
 
-            button.click(function () {
-                name = input.val();
+         button.click(function () {
+         name = input.val();
 
-            })
-        }
+         })
+         }
 
-        //
-        // function disable() {
-        //     input.unbind();
-        //     button.unbind();
-        //     input.val('');
-        // }*/
+         //
+         // function disable() {
+         //     input.unbind();
+         //     button.unbind();
+         //     input.val('');
+         // }*/
 
 
-        $(function(){
-            $('#start').click(function(){
-                level=$('input[name=gender]:checked').val();
+        $(function () {
+            $('#start').click(function () {
+                level = $('input[name=gender]:checked').val();
                 changeState(CONST_STATE_GAME);
             });
 
@@ -146,44 +146,71 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     var GameLogics = function () {
         var view = $('#game');
         var letters = 'abcdefghijklmnopqrstuvwxyz';
-        // var input = $('#username');
-        // var button = $('#register');
         var timeOut;
         var letterKey;
         var letterPlacement = $('h3');
+        var lifesCount;
+        var score;
+        var userInput = true;
 
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
-            view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level +'<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
+            lifesCount = 3;
+            score = 0;
+            view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
             changeLetter();
+            enable();
         };
 
         this.hide = function () {
-                view.addClass('hidden');
+            view.addClass('hidden');
             // disable();
         };
 
         function enable() {
-            timeOut = setTimeout(changeLetter, level * 1000);
+            $(window).keyup(function (e) {
+                if (e.key === letters[letterKey])
+                    updateScore();
+                else {
+                    removeLife();
+                }
+                userInput = true;
+                changeLetter();
+            });
         };
 
 
-          function changeLetter(){
-    letterKey = Math.round(Math.random() * (letters.length -1));
-              letterPlacement.html(letters[letterKey]);
-              enable();
-          };
 
+        function changeLetter() {
+            if(!userInput)
+                removeLife();
+            userInput = false;
+            clearTimeout(timeOut);
+            letterKey = Math.round(Math.random() * (letters.length - 1));
+            letterPlacement.html(letters[letterKey]);
+            timeOut = setTimeout(changeLetter, level * 1000);
+        };
 
-        // function disable() {
-        //     input.unbind();
-        //     button.unbind();
-        //     input.val('');
-        // }
+        function updateScore(){
+            score+=10;
+            $('#score').html(score);
+
+        }
+
+        function removeLife(){
+            lifesCount-=1;
+            $('#life').html(lifesCount);
+            if(lifesCount <= 0)
+                changeState(CONST_STATE_GAME_OVER);
+        }
+
+         function disable() {
+             $(window).unbind();
+             clearTimeout(timeOut);
+
+         }
 
     };
-
-
 
 
     /**/

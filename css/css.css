@@ -1,5 +1,5 @@
-#register{
-    background-color: teal ;
+#register {
+    background-color: teal;
     border-radius: 5px;
     color: white;
     padding: 12px 17px;
@@ -12,7 +12,7 @@
     border: none;
 }
 
-#registration{
+#registration {
     text-align: center;
     /*vertical-align: middle;*/
     margin: 10%;
@@ -26,24 +26,22 @@
     /*background-position: center;*/
     /*-moz-background-size: auto;*/
 
-
 }
 
-#username{
+#username {
     text-align: left;
 
-
 }
 
-body{
-background-color: paleturquoise;
+body {
+    background-color: paleturquoise;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-#level{
+#level {
     text-align: center;
     padding: 100px 100px 100px 100px;
     margin: 10%;
@@ -51,8 +49,8 @@ background-color: paleturquoise;
     border-color: teal;
 }
 
-#start{
-    background-color: teal ;
+#start {
+    background-color: teal;
     border-radius: 5px;
     color: white;
     padding: 12px 17px;
@@ -65,6 +63,9 @@ background-color: paleturquoise;
     border: none;
 }
 
-.letters{
-
+.letters {
+    width: 50px;
+    height: 50px;
+    background-color: teal;
+    text-align: center;
 }
