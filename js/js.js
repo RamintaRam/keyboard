@@ -33,7 +33,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
                 break;
 
             case CONST_STATE_GAME_OVER:
-
+                last_state = over_game;
                 break;
 
         }
@@ -164,7 +164,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         this.hide = function () {
             view.addClass('hidden');
-            // disable();
+            disable();
         };
 
         function enable() {
@@ -180,35 +180,96 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
 
 
-
         function changeLetter() {
-            if(!userInput)
+            if (!userInput)
                 removeLife();
-            userInput = false;
+
             clearTimeout(timeOut);
+
+            if (lifesCount <= 0)
+                return;
+
+            userInput = false;
             letterKey = Math.round(Math.random() * (letters.length - 1));
             letterPlacement.html(letters[letterKey]);
             timeOut = setTimeout(changeLetter, level * 1000);
         };
 
-        function updateScore(){
-            score+=10;
+        function updateScore() {
+            score += 10;
             $('#score').html(score);
 
         }
 
-        function removeLife(){
-            lifesCount-=1;
+        function removeLife() {
+            lifesCount -= 1;
             $('#life').html(lifesCount);
-            if(lifesCount <= 0)
+            if (lifesCount === 0)
                 changeState(CONST_STATE_GAME_OVER);
         }
 
-         function disable() {
-             $(window).unbind();
-             clearTimeout(timeOut);
+        function disable() {
+            $(window).unbind();
+            clearTimeout(timeOut);
 
+        }
+
+    };
+
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+    /*Select GAME OVER stage*/
+
+
+    var GameOverLogics = function () {
+        var view = $('#gameover');
+        // var input = $('#radio');
+        // var button = $('#start');
+        var button = $('#playagain');
+
+        this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
+            view.removeClass('hidden').prepend('<h3>' + 'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score:' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
+            // enable();*/
+        };
+
+        this.hide = function () {
+            view.addClass('hidden');
+            // disable();
+        };
+        /*
+
+         function enable() {
+
+         input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
+         if(input.val().length >= 3)
+         button.attr('disabled', false);
+         else{
+         button.attr('disabled', true);
          }
+         });
+
+         button.click(function () {
+         name = input.val();
+
+         })
+         }
+
+         //
+         // function disable() {
+         //     input.unbind();
+         //     button.unbind();
+         //     input.val('');
+         // }*/
+
+
+        // $(function () {
+        //     $('#start').click(function () {
+        //         level = $('input[name=gender]:checked').val();
+        //         changeState(CONST_STATE_GAME);
+        //     });
+        //
+        // });
 
     };
 
@@ -216,11 +277,13 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     /**/
     var register = new RegisterLogics(),
         select_level = new SelectLevelLogics(),
-        start_game = new GameLogics();
+        start_game = new GameLogics(),
+        over_game = new GameOverLogics();
 
     changeState(CONST_STATE_REGISTER); // pirmas dalykas, ka turi matyti vartotojas. kad nekrautu visko iskart.
 
 }
+
 
 
 
