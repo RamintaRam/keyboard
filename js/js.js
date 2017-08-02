@@ -237,17 +237,17 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             view.addClass('hidden');
             // disable();
         };
-        /*
+
 
          function enable() {
 
-         input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
-         if(input.val().length >= 3)
-         button.attr('disabled', false);
-         else{
-         button.attr('disabled', true);
-         }
-         });
+         // input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
+         // if(input.val().length >= 3)
+         // button.attr('disabled', false);
+         // else{
+         // button.attr('disabled', true);
+         // }
+         // });
 
          button.click(function () {
          name = input.val();
