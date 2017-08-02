@@ -13,6 +13,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     var last_state; // reikia saugoti paskutinio state name arba objekta. Siuo atveju bus objektas. kai change state ivyskta,
     var level;
     var game;
+    var score;
 
     function changeState(value) {
 
@@ -189,16 +190,15 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             });
         };
 
-        reactionTime = clickOnLetterTime-letterAppearanceTime;
-
         function changeLetter() {
-            if(Math.random()<0.1) {
+
+            if (Math.random() < 0.1) {
                 letterPlacement.addClass('gold');
                 isGolden = true;
             }
-            else{
+            else {
                 letterPlacement.removeClass('gold');
-                isGolden=false;
+                isGolden = false;
             }
             if (!userInput)
                 removeLife();
@@ -217,13 +217,13 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         function updateScore() {
 
-            if(score%20===0 && score!==0)   // lyginama ar liekana 0. proc. zenklas tikrina liekana.
+            if (score % 20 === 0 && score !== 0)   // lyginama ar liekana 0. proc. zenklas tikrina liekana.
             {
-                lifesCount+=1;
+                lifesCount += 1;
                 $('#life').html(lifesCount);
             }
 
-            if(isGolden) {
+            if (isGolden) {
                 isGolden = false;
                 for (i = 0; i < 5; i++)
                     updateScore();
@@ -237,9 +237,9 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         }
 
-        function countTime(){
-            reactionTime=(clickOnLetterTime-letterAppearanceTime)*0.001;
-            console.log(reactionTime);
+        function countTime() {
+            reactionTime = (clickOnLetterTime - letterAppearanceTime) * 0.001;
+            // console.log(reactionTime);
             $('#time').html(reactionTime);
 
 
@@ -283,28 +283,28 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
 
 
-         function enable() {
+        function enable() {
 
-         // input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
-         // if(input.val().length >= 3)
-         // button.attr('disabled', false);
-         // else{
-         // button.attr('disabled', true);
-         // }
-         // });
+            // input.keyup(function(e) {  // keyup, kad input laukelyje paspaudus klav.klavisa suveiktu eventas.
+            // if(input.val().length >= 3)
+            // button.attr('disabled', false);
+            // else{
+            // button.attr('disabled', true);
+            // }
+            // });
 
-         button.click(function () {
-         name = input.val();
+            button.click(function () {
+                name = input.val();
 
-         })
-         }
+            })
+        }
 
-         //
-         // function disable() {
-         //     input.unbind();
-         //     button.unbind();
-         //     input.val('');
-         // }*/
+        //
+        // function disable() {
+        //     input.unbind();
+        //     button.unbind();
+        //     input.val('');
+        // }*/
 
 
         // $(function () {
