@@ -6,7 +6,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
     border: none;
@@ -15,10 +15,9 @@
 #registration {
     text-align: center;
     /*vertical-align: middle;*/
-    margin: 10%;
-    padding: 100px 100px 100px 100px;
-    border: double;
-    border-color: teal;
+    /*margin: 3%;*/
+    /*padding: 100px 100px 100px 100px;*/
+
 
     /*background-color: aquamarine;*/
     /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8slLWYemGzetGvSyuqXksE8voZIvrx6KFotxSMIpHEQ5jOPq6yA");*/
@@ -30,11 +29,20 @@
 
 #username {
     text-align: left;
+    height: 50px;
+    width: 400px;
+    border-color: transparent;
+    border-radius: 5px;
+    font-size: xx-large;
+    color: teal;
+
 
 }
 
 body {
-    background-color: paleturquoise;
+    background-image: url("http://www.sense-lang.org/img/Lessons.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .hidden {
@@ -43,10 +51,9 @@ body {
 
 #level {
     text-align: center;
-    padding: 100px 100px 100px 100px;
-    margin: 10%;
-    border: double;
-    border-color: teal;
+    margin: 7%;
+    font-size: large;
+    color: teal;
 }
 
 #start {
@@ -57,7 +64,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
     border: none;
@@ -73,3 +80,28 @@ body {
 .gold{
     color: goldenrod;
 }
+
+#game{
+    text-align: center;
+    margin: 7%;
+    font-size: large;
+    color: teal;
+}
+
+#gamename{
+    margin-left: 8%;
+    margin-top: 11%;
+    font-size: 60px;
+    font-style: italic;
+    color: white;
+}
+
+
+img{
+    -webkit-user-select: none;
+    background-position: 0px 0px, 10px 10px;
+    background-size: 20px 20px;b
+ackground-image:linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%),
+linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee 100%);
+}
+
