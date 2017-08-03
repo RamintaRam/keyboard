@@ -19,43 +19,21 @@
     </head>
 <body>
 
-<!--REGISTRATION view-->
-{{--<div id="gamename">Typing game</div>--}}
-<div id="registration" class="hidden">
-    <input id="username" placeholder="Username"><br>
-    <button id="register" class="btn bnt-primary" disabled>Register</button>
-</div>
 
 
-<!--select LEVEL view-->
-
-<div id="level" class="hidden">
-    <input type="radio" name="gender" value="9"> Easy
-    <input type="radio" name="gender" value="6"> Medium
-    <input type="radio" name="gender" value="3"> Hard<br><br>
-    <button id="start"> Start Game</button>
-</div>
 
 
-<!--select GAME view-->
-
-<div id="game" class="hidden">
-    <div class="letters"><h3></h3></div>
-    <div id="score"></div>
-    <div id="life"></div>
-    <div id="time"></div>
-</div>
 
 
-<!--select GAME OVER view-->
 
-<div id="gameover" class="hidden">
-    <div class="letters"><h3></h3></div>
 
-    <button id="playagain">Play again</button>
-    <!--<div id="time"></div>-->
 
-</div>
+
+
+
+
+
+
 
 
 
@@ -65,5 +43,5 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script src="js/game.js"></script>
-<script> new FastTyping()</script> <!--uzsikrauna puslapis ir iskart pasileidzia funkcija. -->
+
 </html>
