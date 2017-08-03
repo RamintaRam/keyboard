@@ -40,20 +40,21 @@
 <!--select GAME view-->
 
 <div id="game" class="hidden">
-    <div class="letters"><h3></h3></div>
+    <div id="letters"><h3></h3></div>
     <div id="score"></div>
     <div id="life"></div>
     <div id="time"></div>
+    <div id=""></div>
 </div>
 
 
 <!--select GAME OVER view-->
 
 <div id="gameover" class="hidden">
-    <div class="letters"><h3></h3></div>
+    {{--<div class="letters"><h3></h3></div>--}}
 
     <button id="playagain">Play again</button>
-    <!--<div id="time"></div>-->
+    <div id="time"></div>
 
 </div>
 

@@ -163,7 +163,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             lifesCount = 3;
             score = 0;
             view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
-            changeLetter();
+           changeLetter();
             enable();
         };
 
@@ -273,7 +273,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var button = $('#playagain');
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
-            view.removeClass('hidden').prepend('<h3>' + 'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score:' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
+            view.removeClass('hidden').prepend('<h3>' +  'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score: ' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
             // enable();*/
         };
 
