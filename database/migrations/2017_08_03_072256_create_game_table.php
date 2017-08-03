@@ -15,6 +15,7 @@ class CreateGameTable extends Migration {
 		Schema::create('game', function(Blueprint $table)
 		{
 			$table->string('category_id', 36)->unique('category_id_UNIQUE');
+            $table->integer('count', true);
 			$table->string('name');
 			$table->integer('score');
 			$table->string('total_time', 45);
