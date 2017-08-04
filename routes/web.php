@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/gameover', function () {
-    return view('game-over');
-});
+//Route::get('/gameover', function () {
+//    return view('game-over');
+//});
 
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', ['as' => 'app.game.index', 'uses' => 'GameController@index']);
+    Route::post('/create', ['as' => 'app.game.store','uses' => 'GameController@store']);
+});

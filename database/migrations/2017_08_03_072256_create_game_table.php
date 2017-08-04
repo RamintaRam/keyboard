@@ -14,13 +14,13 @@ class CreateGameTable extends Migration {
 	{
 		Schema::create('game', function(Blueprint $table)
 		{
-			$table->string('category_id', 36)->unique('category_id_UNIQUE');
+			$table->string('id', 36)->unique('category_id_UNIQUE');
             $table->integer('count', true);
 			$table->string('name');
 			$table->integer('score');
-			$table->string('total_time', 45);
+			$table->string('total_time', 45)->nullable();
 			$table->string('level', 45);
-			$table->integer('average_speed');
+			$table->integer('average_speed')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

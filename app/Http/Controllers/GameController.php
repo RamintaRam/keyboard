@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
 
 class GameController extends Controller {
 
@@ -12,7 +14,7 @@ class GameController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('welcome');
 	}
 
 	/**
@@ -34,7 +36,15 @@ class GameController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        Game::create([
+            'id' => Uuid::uuid4(),
+            'name' => $data['name'],
+            'level' => $data['level'],
+            'score' => $data['score'],
+        ]);
+        dd($data);
+        return view('welcome');
 	}
 
 	/**

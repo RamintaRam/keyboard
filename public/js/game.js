@@ -14,6 +14,11 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     var level;
     var game;
     var score;
+    var saveURL;
+
+    this.setSaveURL = function(value) {
+        saveURL = value;
+    };
 
     function changeState(value) {
 
@@ -151,7 +156,6 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var letterKey;
         var letterPlacement = $('h3');
         var lifesCount;
-        var score;
         var userInput = true;
         var isGolden;
         var letterAppearanceTime;
@@ -173,7 +177,6 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         };
 
         function enable() {
-
             $(window).keyup(function (e) {
 
                 if (e.key === letters[letterKey])
@@ -214,6 +217,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             letterAppearanceTime = Date.now();
             timeOut = setTimeout(changeLetter, level * 1000);
         };
+
 
         function updateScore() {
 
@@ -274,13 +278,35 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
             view.removeClass('hidden').prepend('<h3>' +  'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score: ' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
-            // enable();*/
+            saveResult();
         };
 
         this.hide = function () {
             view.addClass('hidden');
             // disable();
         };
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function saveResult() {
+
+            $.ajax({
+                url: saveURL,
+                method: "POST",
+                data: {
+                    name: name,
+                    level: level,
+                    score: score,
+                    // total_time: total_time,
+                    // average_speed: average_speed
+
+                }
+            });
+        }
 
 
         function enable() {
@@ -316,6 +342,8 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         // });
 
     };
+
+
 
 
     /**/
