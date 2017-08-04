@@ -32,3 +32,13 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+body {
+    background: url('../images/typing-changed.png') no-repeat;
+    background-size: 100%;
+}
+
+
+.tab {
+    padding-left: 20px;
+}
