@@ -15,8 +15,11 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     var game;
     var score;
     var saveURL;
+    var start_game;
+    var end_game;
+    var total_time;
 
-    this.setSaveURL = function(value) {
+    this.setSaveURL = function (value) {
         saveURL = value;
     };
 
@@ -35,7 +38,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
                 break;
 
             case CONST_STATE_GAME:
-                last_state = start_game;
+                last_state = game_begin;
                 break;
 
             case CONST_STATE_GAME_OVER:
@@ -137,6 +140,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         $(function () {
             $('#start').click(function () {
                 level = $('input[name=gender]:checked').val();
+                start_game = Date.now();
                 changeState(CONST_STATE_GAME);
             });
 
@@ -155,7 +159,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var timeOut;
         var letterKey;
         var letterPlacement = $('h3');
-        var lifesCount;
+        var livesCount;
         var userInput = true;
         var isGolden;
         var letterAppearanceTime;
@@ -164,10 +168,10 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
-            lifesCount = 3;
+            livesCount = 3;
             score = 0;
             view.removeClass('hidden').prepend('<h3>' + /*'User name:' + ' ' +*/  name + '<br>' + '<h4>' + 'Play level: ' + level + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
-           changeLetter();
+            changeLetter();
             enable();
         };
 
@@ -208,7 +212,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
 
             clearTimeout(timeOut);
 
-            if (lifesCount <= 0)
+            if (livesCount <= 0)
                 return;
 
             userInput = false;
@@ -218,13 +222,19 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
             timeOut = setTimeout(changeLetter, level * 1000);
         };
 
+function totalTime(){
+    total_time = (clickOnLetterTime - letterAppearanceTime) * 0.001;
+}
+
+
+
 
         function updateScore() {
 
             if (score % 20 === 0 && score !== 0)   // lyginama ar liekana 0. proc. zenklas tikrina liekana.
             {
-                lifesCount += 1;
-                $('#life').html(lifesCount);
+                livesCount += 1;
+                $('#life').html(livesCount);
             }
 
             if (isGolden) {
@@ -250,10 +260,15 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         }
 
         function removeLife() {
-            lifesCount -= 1;
-            $('#life').html(lifesCount);
-            if (lifesCount === 0)
+            livesCount -= 1;
+            $('#life').html(livesCount);
+            if (livesCount === 0){
+                end_game = Date.now();
+                totalTime();
                 changeState(CONST_STATE_GAME_OVER);
+
+
+            }
         }
 
         function disable() {
@@ -277,7 +292,7 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
         var button = $('#playagain');
 
         this.show = function () {    // this rasome, kad sitas kintamasis butu pasiekiamas is isores. Jos bus kvieciamos is isores.
-            view.removeClass('hidden').prepend('<h3>' +  'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score: ' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
+            view.removeClass('hidden').prepend('<h3>' + 'User name:' + ' ' + name + '<br>' + '<h4>' + 'Has score: ' + score + '<br><br>');  // remove hidden, kad vartotojas matytu registracijos langa. Kai bus kitam state, sitas bus vel hidden.
             saveResult();
         };
 
@@ -344,12 +359,10 @@ var FastTyping = function () {  // rasome is didziosios, nes tai yra objektas.
     };
 
 
-
-
     /**/
     var register = new RegisterLogics(),
         select_level = new SelectLevelLogics(),
-        start_game = new GameLogics(),
+        game_begin = new GameLogics(),
         over_game = new GameOverLogics();
 
     changeState(CONST_STATE_REGISTER); // pirmas dalykas, ka turi matyti vartotojas. kad nekrautu visko iskart.

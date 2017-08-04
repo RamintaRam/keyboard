@@ -11,4 +11,5 @@ class Game extends CoreModel
 
     protected $fillable = ['id', 'name', 'score', 'total_time', 'level', 'average_speed'];
 
+    protected $hidden = ['id', 'level', 'updated_at', 'count', 'total_time', 'average_speed', 'deleted_at'];
 }

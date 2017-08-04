@@ -20,6 +20,10 @@
 //});
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/', ['as' => 'app.game.index', 'uses' => 'GameController@index']);
-    Route::post('/create', ['as' => 'app.game.store','uses' => 'GameController@store']);
+    Route::get('/gameover', ['as' => 'app.game.index', 'uses' => 'GameController@index']);
+    Route::post('/create', ['as' => 'app.game.store', 'uses' => 'GameController@store']);
 });
+
+//Route::get('/gameover', function () {
+//    Route::get('/', ['as' => 'app.game.index', 'uses' => 'GameController@index']);
+//});

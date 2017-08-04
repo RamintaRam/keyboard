@@ -14,7 +14,12 @@ class GameController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+        $config['list3'] = Game::where('level', '3')->get()->toArray();
+        $config['list6'] = Game::where('level', '6')->get()->toArray();
+        $config['list9'] = Game::where('level', '9')->get()->toArray();
+
+
+		return view('game-over', $config);
 	}
 
 	/**
@@ -43,7 +48,7 @@ class GameController extends Controller {
             'level' => $data['level'],
             'score' => $data['score'],
         ]);
-        dd($data);
+
         return view('welcome');
 	}
 
